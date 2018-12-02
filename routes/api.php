@@ -12,3 +12,13 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+
+// Categories
+Route::get('category', 'CategoryController@index')->name('category.index');
+Route::post('category', 'CategoryController@store')->name('category.store');
+
+// TaskType
+Route::get('tasktype', 'TaskTypeController@index')->name('tasktype.index');
+Route::post('tasktype', 'TaskTypeController@store')->name('tasktype.store');
