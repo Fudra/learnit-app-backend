@@ -21,6 +21,14 @@ class CreateTasksTable extends Migration
             $table->text('description')->nullable();
             $table->smallInteger('task_type_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('quiz_id')
+                ->references('id')->on('quizzes')
+                ->onDelete('cascade');
+
+            $table->foreign('task_type_id')
+                ->references('id')->on('task_types')
+                ->onDelete('cascade');
         });
     }
 

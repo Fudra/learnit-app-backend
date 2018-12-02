@@ -21,6 +21,10 @@ class CreateAnswersTable extends Migration
             $table->boolean('correct_choice')->nullable();
             $table->string('correct_string')->nullable();
             $table->timestamps();
+
+            $table->foreign('task_id')
+                ->references('id')->on('tasks')
+                ->onDelete('cascade');
         });
     }
 
