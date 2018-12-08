@@ -1,7 +1,7 @@
 <?php
 
 // parse the Database string for heroku
-$url = parse_url(getenv("DATABASE_URL"));
+$url = parse_url(env("DATABASE_URL"));
 
 $host = $url["host"];
 $username = $url["user"];
