@@ -24,15 +24,26 @@ class Quiz extends Model
         'thumbnail'
     ];
 
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_quizzes');
     }
 
-    public function setCategoriesAttribute($categories)
+    // TODO!!!!!!
+//    public function setCategoriesAttribute($categories)
+//    {
+//        dd($this);
+//        $this->categories()->sync($categories->toArray());
+//    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
     {
-        dd($this);
-        $this->categories()->sync($categories->toArray());
+        return $this->hasMany(Task::class);
     }
 }

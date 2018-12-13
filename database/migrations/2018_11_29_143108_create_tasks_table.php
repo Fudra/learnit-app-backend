@@ -17,9 +17,8 @@ class CreateTasksTable extends Migration
             $table->increments('id')->index();
             $table->integer('quiz_id')->unsigned()->index();
             $table->integer('task_type_id')->unsigned()->index();
-            $table->string('text');
+            $table->text('text')->nullable();
             $table->integer('order')->unsigned();
-            $table->text('description')->nullable();
             $table->timestamps();
 
             $table->foreign('quiz_id')

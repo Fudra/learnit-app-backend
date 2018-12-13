@@ -34,3 +34,7 @@ Route::resource('quizzes','QuizController')->except(['edit', 'create']);
 //Route::patch('quizzes/{id}', 'QuizController@update')->name('quiz.update');
 //Route::post('quizzes', 'QuizController@store')->name('quiz.store');
 //Route::delete('quizzes/{id}', 'QuizController@destroy')->name('quiz.destroy');
+
+
+// Task
+Route::resource('tasks','TaskController')->except(['edit', 'create']);
