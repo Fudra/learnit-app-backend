@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Transformers\CategoryTransformer;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -40,5 +41,17 @@ class CategoryController extends Controller
             ->item($category)
             ->transformWith(new CategoryTransformer())
             ->toArray();
+    }
+
+    /**
+     * @param Request $request
+     * @param Category $category
+     * @return int
+     */
+    public function destroy(Request $request, Category $category)
+    {
+        dd($category->delete());
+        $category->delete();
+        return 'ok';
     }
 }

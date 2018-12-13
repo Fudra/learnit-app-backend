@@ -15,12 +15,12 @@ class CreateCategoryQuizzesTable extends Migration
     {
         Schema::create('category_quizzes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->index()->unsigned();
-            $table->integer('quiz_id')->index()->unsigned();
+            $table->integer('category_id')->unsigned()->index();
+            $table->integer('quiz_id')->unsigned()->index();
             $table->timestamps();
 
             $table->foreign('category_id')
-                ->references('id')->on('category')
+                ->references('id')->on('categories')
                 ->onDelete('cascade');
 
             $table->foreign('quiz_id')

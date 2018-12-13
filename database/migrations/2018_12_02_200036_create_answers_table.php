@@ -14,8 +14,8 @@ class CreateAnswersTable extends Migration
     public function up()
     {
         Schema::create('answers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('task_id')->unsigned();
+            $table->increments('id')->index();
+            $table->integer('task_id')->unsigned()->index();
             $table->integer('order')->unsigned();
             $table->text('text');
             $table->boolean('correct_choice')->nullable();

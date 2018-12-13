@@ -14,9 +14,9 @@ class CreateProgressesTable extends Migration
     public function up()
     {
         Schema::create('progresses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->index()->unsigned();
-            $table->integer('quiz_id')->index()->unsigned();
+            $table->increments('id')->index();
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('quiz_id')->unsigned()->index();
             $table->json('progress')->nullable();
             $table->timestamps();
 
@@ -28,6 +28,7 @@ class CreateProgressesTable extends Migration
                 ->references('id')->on('quizzes')
                 ->onDelete('cascade');
         });
+
     }
 
     /**

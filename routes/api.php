@@ -15,10 +15,17 @@ use Illuminate\Http\Request;
 
 
 
+
 // Categories
-Route::get('category', 'CategoryController@index')->name('category.index');
-Route::post('category', 'CategoryController@store')->name('category.store');
+Route::get('categories', 'CategoryController@index')->name('category.index');
+Route::post('categories', 'CategoryController@store')->name('category.store');
+Route::delete('categories/{id}', 'CategoryController@destroy')->name('category.destroy');
 
 // TaskType
 Route::get('tasktype', 'TaskTypeController@index')->name('tasktype.index');
 Route::post('tasktype', 'TaskTypeController@store')->name('tasktype.store');
+
+// Quiz
+Route::get('quizzes', 'QuizController@index')->name('quiz.index');
+Route::get('quizzes/{id}', 'QuizController@show')->name('quiz.show');
+Route::post('quizzes', 'QuizController@store')->name('quiz.store');

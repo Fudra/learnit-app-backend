@@ -17,8 +17,9 @@ class CategoryTransformer extends TransformerAbstract
     public function transform(Category $category)
     {
         return [
+            'id' => $category->id,
             'name' => $category->name,
-            'quizzes' => '0'
+            'quizzes' => $category->quizzes()->count(),
         ];
     }
 }

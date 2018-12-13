@@ -14,4 +14,9 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function quizzes()
+    {
+        return $this->belongsToMany(Quiz::class, 'category_quizzes');
+    }
 }

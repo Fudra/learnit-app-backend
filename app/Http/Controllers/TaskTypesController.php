@@ -33,7 +33,6 @@ class TaskTypesController extends Controller
      */
     public function store(TaskTypeRequest $request)
     {
-
         $taskType = TaskType::create(['name' => $request->get('name')]);
 
         return fractal()
