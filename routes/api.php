@@ -17,15 +17,20 @@ use Illuminate\Http\Request;
 
 
 // Categories
-Route::get('categories', 'CategoryController@index')->name('category.index');
-Route::post('categories', 'CategoryController@store')->name('category.store');
-Route::delete('categories/{id}', 'CategoryController@destroy')->name('category.destroy');
+Route::resource('categories','CategoryController')->only(['index', 'store', 'destroy']);
+//Route::get('categories', 'CategoryController@index')->name('category.index');
+//Route::post('categories', 'CategoryController@store')->name('category.store');
+//Route::delete('categories/{id}', 'CategoryController@destroy')->name('category.destroy');
 
 // TaskType
-Route::get('tasktype', 'TaskTypeController@index')->name('tasktype.index');
-Route::post('tasktype', 'TaskTypeController@store')->name('tasktype.store');
+Route::resource('tasktype','TaskTypesController')->only(['index', 'store']);
+//Route::get('tasktype', 'TaskTypesController@index')->name('tasktype.index');
+//Route::post('tasktype', 'TaskTypesController@store')->name('tasktype.store');
 
 // Quiz
-Route::get('quizzes', 'QuizController@index')->name('quiz.index');
-Route::get('quizzes/{id}', 'QuizController@show')->name('quiz.show');
-Route::post('quizzes', 'QuizController@store')->name('quiz.store');
+Route::resource('quizzes','QuizController')->except(['edit', 'create']);
+//Route::get('quizzes', 'QuizController@index')->name('quiz.index');
+//Route::get('quizzes/{id}', 'QuizController@show')->name('quiz.show');
+//Route::patch('quizzes/{id}', 'QuizController@update')->name('quiz.update');
+//Route::post('quizzes', 'QuizController@store')->name('quiz.store');
+//Route::delete('quizzes/{id}', 'QuizController@destroy')->name('quiz.destroy');

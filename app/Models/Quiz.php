@@ -29,4 +29,10 @@ class Quiz extends Model
     {
         return $this->belongsToMany(Category::class, 'category_quizzes');
     }
+
+    public function setCategoriesAttribute($categories)
+    {
+        dd($this);
+        $this->categories()->sync($categories->toArray());
+    }
 }

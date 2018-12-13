@@ -16,7 +16,11 @@ class QuizController extends Controller
      */
     public function index()
     {
-        //
+        return fractal()
+            ->collection(Quiz::all())
+            ->transformWith(new QuizTransformer())
+            ->parseIncludes('categories')
+            ->toArray();
     }
 
 
@@ -43,8 +47,7 @@ class QuizController extends Controller
      */
     public function show($id)
     {
-        $quiz = Quiz::find($id);
-            // parseIncludes
+        $quiz = Quiz::findOrFail($id);
 
         return fractal()
             ->item($quiz)
@@ -53,16 +56,6 @@ class QuizController extends Controller
             ->toArray();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -71,9 +64,19 @@ class QuizController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        $quiz = Quiz::findOrFail($id);
+        $quiz->update($request->only(['name', 'description']));
+//
+        $quiz->categories()->sync($request->get('categories'));
+        $quiz->save();
+
+        return fractal()
+            ->item($quiz)
+            ->transformWith(new QuizTransformer())
+            ->parseIncludes('categories')
+            ->toArray();
     }
 
     /**
@@ -84,6 +87,8 @@ class QuizController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Quiz::destroy($id);
+
+        return 'ok';
     }
 }
