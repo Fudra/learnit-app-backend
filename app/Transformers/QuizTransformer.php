@@ -14,7 +14,8 @@ class QuizTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'categories'
+        'categories',
+        'tasks',
     ];
 
 
@@ -44,5 +45,16 @@ class QuizTransformer extends TransformerAbstract
     public function includeCategories(Quiz $quiz)
     {
         return $this->collection($quiz->categories()->get(), new CategoryTransformer());
+    }
+
+    /**
+     * Include Tasks
+     *
+     * @param Quiz $quiz
+     * @return \League\Fractal\Resource\Collection
+     */
+    public function includeTasks(Quiz $quiz)
+    {
+        return $this->collection($quiz->tasks()->get(), new TaskTransformer());
     }
 }

@@ -1,14 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
-use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
-use App\Transformers\CategoryTransformer;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
+use App\Transformers\CategoryTransformer;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('jwt.auth')
+            ->except(['index']);
+    }
+
 
     /**
      * Show all resources in storage
@@ -47,6 +55,7 @@ class CategoryController extends Controller
      * @param Request $request
      * @param Category $category
      * @return int
+     * @throws \Exception
      */
     public function destroy(Request $request, Category $category)
     {

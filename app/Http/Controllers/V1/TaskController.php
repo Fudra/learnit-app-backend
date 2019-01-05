@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 use App\Models\Task;
-use App\Transformers\TaskTransformer;
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
+use App\Http\Controllers\Controller;
+use App\Transformers\TaskTransformer;
+use App\Http\Requests\TaskTypeRequest;
 
 class TaskController extends Controller
 {
@@ -28,9 +31,9 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
-use App\Http\Requests\QuizRequest;
 use App\Models\Quiz;
-use App\Transformers\QuizTransformer;
 use Illuminate\Http\Request;
+use App\Http\Requests\QuizRequest;
+use App\Http\Controllers\Controller;
+use App\Transformers\QuizTransformer;
 
 class QuizController extends Controller
 {
@@ -52,7 +53,7 @@ class QuizController extends Controller
         return fractal()
             ->item($quiz)
             ->transformWith(new QuizTransformer())
-            ->parseIncludes('categories')
+            ->parseIncludes(['categories', 'tasks'])
             ->toArray();
     }
 

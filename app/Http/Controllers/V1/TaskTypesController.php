@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
-use App\Http\Requests\TaskTypeRequest;
 use App\Models\TaskType;
-use App\Transformers\TaskTypeTransformer;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\TaskTypeRequest;
+use App\Transformers\TaskTypeTransformer;
 
 class TaskTypesController extends Controller
 {

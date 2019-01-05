@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,21 +12,30 @@ use Illuminate\Http\Request;
 */
 
 
+// Api Version
+Route::group(['prefix' => 'v1', 'as'=>'account.', 'namespace' => 'V1'], function () {
+
+// Authenticated routes
+    Route::get('/me', 'Auth\MeController')->name('auth.me');
+    Route::post('/login', 'Auth\LoginController')->name('auth.login');
+    Route::post('/logout', 'Auth\LogoutController')->name('auth.logout');
+    Route::post('/register', 'Auth\RegisterController')->name('auth.register');
+    Route::get('/refresh', 'Auth\RefreshController')->name('auth.refresh');
 
 
 // Categories
-Route::resource('categories','CategoryController')->only(['index', 'store', 'destroy']);
+    Route::resource('categories', 'CategoryController')->only(['index', 'store', 'destroy']);
 //Route::get('categories', 'CategoryController@index')->name('category.index');
 //Route::post('categories', 'CategoryController@store')->name('category.store');
 //Route::delete('categories/{id}', 'CategoryController@destroy')->name('category.destroy');
 
 // TaskType
-Route::resource('tasktype','TaskTypesController')->only(['index', 'store']);
+    Route::resource('tasktype', 'TaskTypesController')->only(['index', 'store']);
 //Route::get('tasktype', 'TaskTypesController@index')->name('tasktype.index');
 //Route::post('tasktype', 'TaskTypesController@store')->name('tasktype.store');
 
 // Quiz
-Route::resource('quizzes','QuizController')->except(['edit', 'create']);
+    Route::resource('quizzes', 'QuizController')->except(['edit', 'create']);
 //Route::get('quizzes', 'QuizController@index')->name('quiz.index');
 //Route::get('quizzes/{id}', 'QuizController@show')->name('quiz.show');
 //Route::patch('quizzes/{id}', 'QuizController@update')->name('quiz.update');
@@ -37,4 +44,9 @@ Route::resource('quizzes','QuizController')->except(['edit', 'create']);
 
 
 // Task
-Route::resource('tasks','TaskController')->except(['edit', 'create']);
+    Route::resource('tasks', 'TaskController')->except(['edit', 'create']);
+
+
+});
+
+
