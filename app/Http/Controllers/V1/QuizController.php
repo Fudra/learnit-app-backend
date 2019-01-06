@@ -43,17 +43,16 @@ class QuizController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param Quiz $quiz
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Quiz $quiz, Request $request)
     {
-        $quiz = Quiz::findOrFail($id);
-
         return fractal()
             ->item($quiz)
             ->transformWith(new QuizTransformer())
-            ->parseIncludes(['categories', 'tasks'])
+            ->parseIncludes(['categories', 'tasks']) // tasks.type
             ->toArray();
     }
 
@@ -61,15 +60,13 @@ class QuizController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param Quiz $quiz
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update(Quiz $quiz, Request $request)
     {
-        $quiz = Quiz::findOrFail($id);
         $quiz->update($request->only(['name', 'description']));
-//
         $quiz->categories()->sync($request->get('categories'));
         $quiz->save();
 
@@ -83,13 +80,15 @@ class QuizController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param Quiz $quiz
+     * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Quiz $quiz, Request $request)
     {
-        Quiz::destroy($id);
+        $quiz->delete();
 
-        return 'ok';
+        return response();
     }
 }

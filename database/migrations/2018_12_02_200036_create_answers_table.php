@@ -19,7 +19,7 @@ class CreateAnswersTable extends Migration
             $table->integer('order')->unsigned();
             $table->text('text');
             $table->boolean('correct_choice')->nullable();
-            $table->string('correct_string')->nullable();
+            $table->string('correct_text')->nullable();
             $table->timestamps();
 
             $table->foreign('task_id')

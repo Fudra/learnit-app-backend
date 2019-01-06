@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Transformers\CategoryTransformer;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CategoryController extends Controller
 {
@@ -42,7 +43,6 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-
         $category = Category::create(['name' => $request->get('name')]);
 
         return fractal()
@@ -52,15 +52,17 @@ class CategoryController extends Controller
     }
 
     /**
+     * Delete category
+     *
      * @param Request $request
      * @param Category $category
      * @return int
      * @throws \Exception
      */
-    public function destroy(Request $request, Category $category)
+    public function destroy(Category $category, Request $request)
     {
-        dd($category->delete());
         $category->delete();
-        return 'ok';
+
+        return response();
     }
 }

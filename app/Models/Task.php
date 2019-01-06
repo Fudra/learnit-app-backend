@@ -27,4 +27,12 @@ class Task extends Model
         return $this->belongsTo(TaskType::class, 'task_type_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
 }

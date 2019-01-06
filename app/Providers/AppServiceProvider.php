@@ -24,5 +24,12 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+
+
+    }
+
+    public function render($e)
+    {
+        dd($e);
     }
 }

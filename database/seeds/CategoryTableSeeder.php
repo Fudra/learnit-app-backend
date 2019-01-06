@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TaskTypeSeeder extends Seeder
+class CategoryTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class TaskTypeSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\TaskType::class, 5)->create();
+        factory(\App\Models\Category::class, 10)->create();
     }
 }

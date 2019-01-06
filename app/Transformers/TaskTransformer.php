@@ -4,7 +4,6 @@ namespace App\Transformers;
 
 use App\Models\Task;
 use League\Fractal\TransformerAbstract;
-use PHPUnit\Util\Type;
 
 class TaskTransformer extends TransformerAbstract
 {
@@ -41,5 +40,10 @@ class TaskTransformer extends TransformerAbstract
     public function includeType(Task $task)
     {
         return $this->item($task->type()->first(), new TaskTypeTransformer());
+    }
+
+    public function includeAnswer(Task $task)
+    {
+        return $this->collection($task->answers(), new AnswerTransformer());
     }
 }

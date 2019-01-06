@@ -17,10 +17,8 @@ class TaskTypesController extends Controller
      */
     public function index()
     {
-        $taskTypes = TaskType::all();
-
         return fractal()
-            ->collection($taskTypes)
+            ->collection(TaskType::all())
             ->transformWith(new TaskTypeTransformer())
             ->toArray();
     }

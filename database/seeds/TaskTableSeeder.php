@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TaskSeeder extends Seeder
+class TaskTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class TaskSeeder extends Seeder
     {
         $quizzes = \App\Models\Quiz::all();
         $types = \App\Models\TaskType::all();
-        $tasks = factory(\App\Models\Task::class, 40)->create();
+        $tasks = factory(\App\Models\Task::class, 80)->create();
 
         foreach ($tasks as $task) {
             $quiz = $quizzes->random(1)->first();

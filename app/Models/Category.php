@@ -15,6 +15,10 @@ class Category extends Model
         'name',
     ];
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function quizzes()
     {
         return $this->belongsToMany(Quiz::class, 'category_quizzes');
