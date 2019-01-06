@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\V1\Auth;
 
 use App\Models\User;
-use App\Transformers\UserTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Transformers\UserTransformer;
 
 class RegisterController extends Controller
 {

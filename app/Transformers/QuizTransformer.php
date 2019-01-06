@@ -2,8 +2,8 @@
 
 namespace App\Transformers;
 
-use App\Models\Category;
 use App\Models\Quiz;
+use App\Models\Category;
 use League\Fractal\TransformerAbstract;
 
 class QuizTransformer extends TransformerAbstract
