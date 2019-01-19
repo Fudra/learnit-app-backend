@@ -17,7 +17,7 @@ class RegisterController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $user = User::create($request->only('email', 'name', 'password'));
+        $user = User::create($request->only('email', 'name', 'password', 'is_admin'));
 
         if (!$token = auth()->attempt($request->only('email', 'password'))) {
             return abort(401);
