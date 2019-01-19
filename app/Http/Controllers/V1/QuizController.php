@@ -37,7 +37,11 @@ class QuizController extends Controller
 
         $quiz->categories()->attach($request->get('categories'));
 
-        return $quiz;
+        return fractal()
+            ->item($quiz)
+            ->transformWith(new QuizTransformer())
+            ->parseIncludes('categories')
+            ->toArray();
     }
 
     /**

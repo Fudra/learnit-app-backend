@@ -13,7 +13,8 @@ class TaskTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'type'
+        'type',
+        'answers'
     ];
 
     /**
@@ -42,8 +43,8 @@ class TaskTransformer extends TransformerAbstract
         return $this->item($task->type()->first(), new TaskTypeTransformer());
     }
 
-    public function includeAnswer(Task $task)
+    public function includeAnswers(Task $task)
     {
-        return $this->collection($task->answers(), new AnswerTransformer());
+        return $this->collection($task->answers, new AnswerTransformer());
     }
 }

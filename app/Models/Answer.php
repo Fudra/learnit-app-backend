@@ -14,7 +14,7 @@ class Answer extends Model
     protected $fillable = [
         'order',
         'text',
-        'correct_string',
+        'correct_text',
         'correct_choice'
     ];
 

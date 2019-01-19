@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TaskRequest extends FormRequest
 {
@@ -24,7 +25,11 @@ class TaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'text' => 'required|min:10'
+            'text' => 'required|min:10',
+            'type' => 'required',
+            'quiz' => 'required',
+            // answers
+            'answers.*.text' => 'required',
         ];
     }
 }
