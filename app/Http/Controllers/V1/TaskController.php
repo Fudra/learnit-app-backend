@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\V1;
 
+use App\Models\Answer;
 use App\Models\Quiz;
 use App\Models\Task;
+use App\Models\TaskType;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 use App\Http\Controllers\Controller;
@@ -31,13 +33,13 @@ class TaskController extends Controller
 
         $count = $quiz->tasks->count();
         $meta = [
-           'pages' => [
-               'prev' => $page <= 1 ? null : $page - 1,
-               'current' => (int)$page,
-               'next' => $page >= $count ? null : $page + 1,
-               'first' => 1,
-               'last' => $count
-           ],
+            'pages' => [
+                'prev' => $page <= 1 ? null : $page - 1,
+                'current' => (int)$page,
+                'next' => $page >= $count ? null : $page + 1,
+                'first' => 1,
+                'last' => $count
+            ],
         ];
 
         return fractal()
@@ -57,9 +59,38 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        // todo; add new Task
-        dd($request->toArray());
+        // create new task
+        $task = new Task([
+            'text' => $request->get('text'),
+            'order' => 1,
+        ]);
 
+        $task->quiz_id = $request->get('quiz_id');
+        $task->task_type_id = $request->get('type_id');
+        $task->save();
+
+        $task->update([
+            'order' => $task->id,
+        ]);
+
+        $answers = $request->get('answers');
+
+        foreach ($answers as $answer) {
+            $answer = new Answer([
+                'text' => $answer['text'],
+                'correct_choice' => $answer['correct_choice'],
+                'correct_text' => $answer['correct_text'],
+                'order' => 1,
+            ]);
+
+            $task->answers()->save($answer);
+
+            $answer->update([
+                'order' => $answer->id,
+            ]);
+        }
+
+        return response('',201);
     }
 
     /**
@@ -85,9 +116,9 @@ class TaskController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Task $task, Request $request)
     {
-        //
+        dd($task);
     }
 
     /**
@@ -96,8 +127,10 @@ class TaskController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        //
+        $task->delete();
+
+        return response('', 200);
     }
 }

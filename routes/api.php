@@ -37,10 +37,9 @@ Route::group(['prefix' => 'v1', 'as'=>'account.', 'namespace' => 'V1'], function
     Route::get('/quizzes/{quiz}/tasks/{page?}', 'TaskController@tasks')->name('quiz.task.index');
 
     // Task
-    Route::get('tasks', 'TaskController@index')->name('task.index');
-    Route::post('tasks', 'TaskController@store')->name('task.store');
-
-
+    Route::resource('tasks', 'TaskController')->except(['show']);
+//    Route::get('tasks', 'TaskController@index')->name('task.index');
+//    Route::post('tasks', 'TaskController@store')->name('task.store');
 });
 
 

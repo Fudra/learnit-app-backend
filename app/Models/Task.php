@@ -12,6 +12,7 @@ class Task extends Model
     ];
 
     /**
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function quiz()

@@ -26,8 +26,8 @@ class TaskRequest extends FormRequest
     {
         return [
             'text' => 'required|min:10',
-            'type' => 'required',
-            'quiz' => 'required',
+            'type_id' => 'required',
+            'quiz_id' => 'required',
             // answers
             'answers.*.text' => 'required',
         ];
