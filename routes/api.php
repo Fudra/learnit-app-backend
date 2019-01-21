@@ -35,11 +35,13 @@ Route::group(['prefix' => 'v1', 'as'=>'account.', 'namespace' => 'V1'], function
 //    Route::post('/quizzes', 'QuizController@store')->name('quiz.store');
 //    Route::get('/quizzes/{quiz}', 'QuizController@show')->name('quiz.show');
     Route::get('/quizzes/{quiz}/tasks/{page?}', 'TaskController@tasks')->name('quiz.task.index');
+    Route::post('/validate', 'QuizValidationController');
 
     // Task
     Route::resource('tasks', 'TaskController')->except(['show']);
 //    Route::get('tasks', 'TaskController@index')->name('task.index');
 //    Route::post('tasks', 'TaskController@store')->name('task.store');
+
 });
 
 
