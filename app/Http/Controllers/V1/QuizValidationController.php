@@ -29,14 +29,14 @@ class QuizValidationController extends Controller
         $answer = Answer::find($item['id']);
 
         $answerValidation = [
+            'answer_id' => $item['id'],
 //            'correct' => [
 //                'text' => $answer->correct_text,
 //                'choice' => $answer->correct_choice,
 //            ],
-            'answer_id' => $item['id'],
             'is_correct' => [
                 'text' => $this->validateLine($answer->correct_text, $item['answer_text']),
-                'choice' => $this->validateLine((bool)$answer->correct_choice, (bool)$item['answer_choice'])
+                'choice' => $this->validateLine($answer->correct_choice, $item['answer_choice'])
             ]
         ];
 
@@ -45,12 +45,13 @@ class QuizValidationController extends Controller
 
     private function validateLine($item1, $item2)
     {
-        if ($item1 === null) {
+
+        if (is_null($item1) && is_null($item2) ) {
             return null;
         }
 
-        if (is_bool($item1) && is_bool($item2)) {
-            return ($item1 || $item2) ? $item1 === $item2 : null;
+        if (is_bool($item1)) {
+            return ($item1 || (bool)$item2) ? $item1 === (bool)$item2 : null;
         }
 
         return Str::lower($item1) === Str::lower($item2);
