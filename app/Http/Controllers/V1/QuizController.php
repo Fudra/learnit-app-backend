@@ -33,7 +33,7 @@ class QuizController extends Controller
      */
     public function store(QuizRequest $request)
     {
-        $quiz = Quiz::create($request->only(['name', 'description']));
+        $quiz = Quiz::create($request->only(['name', 'description', 'thumbnail']));
 
         $quiz->categories()->attach($request->get('categories'));
 
