@@ -46,4 +46,9 @@ class Quiz extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function progress()
+    {
+        return $this->hasMany(Progress::class);
+    }
 }
