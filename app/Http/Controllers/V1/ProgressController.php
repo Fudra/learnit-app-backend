@@ -14,9 +14,21 @@ class ProgressController extends Controller
     {
         if($user = auth()->user())
         {
+            $progressForUser = $quiz->progress()->forUser($user->id)->get()->unique('task_id');
+
+            $meta = [
+                'progress' => [
+                    'count' => $progressForUser->count(),
+                    'quiz' => $quiz->tasks()->count(),
+                    'percentage' => round(((float)$progressForUser->count() / (float)$quiz->tasks()->count() ) * 100 )
+                ],
+            ];
+
             return fractal()
-                ->collection($quiz->progress()->forUser($user->id)->get())
+                ->collection($progressForUser)
                 ->transformWith(new ProgressTransformer())
+                ->addMeta($meta)
+                ->parseIncludes('task.type')
                 ->toArray();
         }
 

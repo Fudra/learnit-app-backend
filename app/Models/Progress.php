@@ -32,6 +32,14 @@ class Progress extends Model
         return $this->belongsTo(Quiz::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
+
 
     /**
      * @todo

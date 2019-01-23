@@ -20,7 +20,7 @@ class QuizController extends Controller
         return fractal()
             ->collection(Quiz::all())
             ->transformWith(new QuizTransformer())
-            ->parseIncludes('categories')
+            ->parseIncludes(['categories', 'progress'] )
             ->toArray();
     }
 

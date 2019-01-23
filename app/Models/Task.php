@@ -36,4 +36,13 @@ class Task extends Model
         return $this->hasMany(Answer::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function progress()
+    {
+//        return $this->hasOne(Progress::class);
+        return $this->hasMany(Progress::class);
+    }
+
 }

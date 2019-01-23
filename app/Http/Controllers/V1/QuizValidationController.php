@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\V1;
 
+use App\Http\Requests\QuizValidationRequest;
 use App\Models\Answer;
 use App\Models\Progress;
 use App\Models\Quiz;
@@ -40,9 +41,10 @@ class QuizValidationController extends Controller
 
 
             $progress = new Progress;
-            $progress->progress =json_encode($answers);
+            $progress->progress = json_encode($answers);
             $progress->user_id = $user->id;
             $progress->quiz_id = \request()->get('quiz_id');
+            $progress->task_id = \request()->get('task_id');
             $progress->save();
         }
     }

@@ -5,6 +5,8 @@ namespace App\Transformers;
 use App\Models\Quiz;
 use App\Models\Category;
 use League\Fractal\TransformerAbstract;
+use League\Fractal\Resource\Collection as LeagueCollection;
+use League\Fractal\Resource\Item as ItemCollection;
 
 class QuizTransformer extends TransformerAbstract
 {
@@ -16,6 +18,7 @@ class QuizTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'categories',
         'tasks',
+        'progress'
     ];
 
 
@@ -56,5 +59,14 @@ class QuizTransformer extends TransformerAbstract
     public function includeTasks(Quiz $quiz)
     {
         return $this->collection($quiz->tasks()->get(), new TaskTransformer());
+    }
+
+    /**
+     * @param Quiz $quiz
+     * @return array|\League\Fractal\Resource\Item
+     */
+    public function includeProgress(Quiz $quiz)
+    {
+        return $this->item($quiz, new QuizProgressTransformer());
     }
 }
