@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         TaskTypeTableSeeder::class,
         QuizTableSeeder::class,
         TaskTableSeeder::class,
-        AnswerTableSeeder::class,
+//        AnswerTableSeeder::class,
     ];
 
     /**
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
         $this->call($this->seedTables);
     }
+
 }
