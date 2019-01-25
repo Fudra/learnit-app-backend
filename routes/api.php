@@ -22,7 +22,6 @@ Route::group(['prefix' => 'v1', 'as' => 'account.', 'namespace' => 'V1'], functi
     Route::post('/register', 'Auth\RegisterController')->name('auth.register');
     Route::get('/refresh', 'Auth\RefreshController')->name('auth.refresh');
 
-
 // Categories
     Route::resource('categories', 'CategoryController')->only(['index', 'store', 'destroy']);
 

@@ -147,7 +147,7 @@ class TaskTableSeeder extends Seeder
                     ],
                 ],
                 [
-                    'task_type_id' => 2,
+                    'task_type_id' => 3,
                     'text' => 'Iterators can be used to i#ANSWER:1# over c#ANSWER:2# and l#ANSWER:3#.',
                     'answers' => [
                         [
@@ -169,7 +169,7 @@ class TaskTableSeeder extends Seeder
 
                 ],
                 [
-                    'task_type_id' => 2,
+                    'task_type_id' => 3,
                     'text' => 'A string that is used to describe functions, modules and classes in Python is called a #ANSWER:1#',
                     'answers' => [
                         [
